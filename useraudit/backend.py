@@ -26,7 +26,7 @@ def user_pre_save(sender, instance=None, raw=False, **kwargs):
     # that the user isn't inactivated on next login by the AuthFailedLoggerBackend
     current_user = sender.objects.get(pk=user.pk)
     if not current_user.is_active and user.is_active:
-        LoginAttemptLogger().reset(user.username)
+        LoginAttemptLogger().reset(user.email)
 
 
 class AuthFailedLoggerBackend(object):
